@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Gomoku Game</title>
+    <link data-trunk rel="rust" />
+    <style>
+      .gomoku-game {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 20px;
+      }
+
+      .status {
+          margin-bottom: 20px;
+          font-size: 24px;
+          font-weight: bold;
+      }
+
+      .board {
+          background-color: #dcb35c;
+          padding: 20px;
+          border-radius: 5px;
+      }
+
+      .board-row {
+          display: flex;
+      }
+
+      .cell {
+          width: 40px;
+          height: 40px;
+          border: 1px solid #000;
+          background: none;
+          padding: 0;
+          position: relative;
+          cursor: pointer;
+      }
+
+      .cell::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+      }
+
+      .cell.black::before {
+          background-color: #000;
+      }
+
+      .cell.white::before {
+          background-color: #fff;
+          border: 1px solid #000;
+      }
+
+      .reset-button {
+          margin-top: 20px;
+          padding: 10px 20px;
+          font-size: 16px;
+          cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>
