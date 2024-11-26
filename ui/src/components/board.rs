@@ -20,10 +20,10 @@ pub struct BoardProps {
 pub fn board(props: &BoardProps) -> Html {
     html! {
         <div class="board">
-            {for (0..15).map(|row| {
+            {for (0..props.board.len()).map(|row| {
                 html! {
                     <div class="board-row">
-                        {for (0..15).map(|col| {
+                        {for (0..props.board.len()).map(|col| {
                             let stone = props.board[row][col].clone();
                             let on_click = props.on_click.clone();
                             let disabled = props.disabled;
@@ -33,7 +33,6 @@ pub fn board(props: &BoardProps) -> Html {
                                     on_click.emit((row, col));
                                 }
                             });
-                            
                             html! {
                                 <button 
                                     class={classes!(
@@ -42,7 +41,7 @@ pub fn board(props: &BoardProps) -> Html {
                                             Stone::Empty => "",
                                             Stone::Black => "black",
                                             Stone::White => "white",
-                                        }
+                                        },
                                     )}
                                     onclick={onclick}
                                     disabled={disabled}
