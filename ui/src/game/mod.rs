@@ -1,15 +1,17 @@
-use crate::components::board::Stone;
+use crate::types::enums::{Stone, BoardSize};
 
 pub struct GameState {
+    pub board_size: BoardSize,
     pub board: Vec<Vec<Stone>>,
     pub current_player: Stone,
     pub winner: Option<Stone>,
 }
 
 impl GameState {
-    pub fn new() -> Self {
+    pub fn new(board_size: BoardSize) -> Self {
         Self {
-            board: vec![vec![Stone::Empty; 15]; 15],
+            board_size,
+            board: vec![vec![Stone::Empty; board_size as usize]; board_size as usize],
             current_player: Stone::Black,
             winner: None,
         }
@@ -47,7 +49,7 @@ impl GameState {
             for _ in 0..4 {
                 r += dx;
                 c += dy;
-                if r < 0 || r >= 15 || c < 0 || c >= 15 {
+                if r < 0 || r >= self.board_size as i32 || c < 0 || c >= self.board_size as i32 {
                     break;
                 }
                 if &self.board[r as usize][c as usize] != stone {
@@ -62,7 +64,7 @@ impl GameState {
             for _ in 0..4 {
                 r -= dx;
                 c -= dy;
-                if r < 0 || r >= 15 || c < 0 || c >= 15 {
+                if r < 0 || r >= self.board_size as i32 || c < 0 || c >= self.board_size as i32 {
                     break;
                 }
                 if &self.board[r as usize][c as usize] != stone {
@@ -79,7 +81,7 @@ impl GameState {
     }
 
     pub fn reset(&mut self) {
-        self.board = vec![vec![Stone::Empty; 15]; 15];
+        self.board = vec![vec![Stone::Empty; self.board_size as usize]; self.board_size as usize];
         self.current_player = Stone::Black;
         self.winner = None;
     }

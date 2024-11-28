@@ -1,5 +1,6 @@
 use yew::prelude::*;
-use crate::components::board::{Board, Stone};
+use crate::components::board::Board;
+use crate::types::enums::{Stone, BoardSize};
 use gloo_net::http::Request;
 use serde::{Serialize, Deserialize};
 
@@ -60,6 +61,7 @@ impl Component for OnlineGame {
             <div class="gomoku-game">
                 <div class="status">{status}</div>
                 <Board 
+                    board_size={BoardSize::Small}
                     board={self.board.clone()}
                     disabled={self.winner.is_some()}
                 />

@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.rs",   // Rust files containing Yew components
-    "./index.html",    // Main HTML file
+    "./dist/index.html",    // Main HTML file
   ],
   theme: {
     extend: {},

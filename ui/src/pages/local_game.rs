@@ -1,5 +1,6 @@
 use yew::prelude::*;
-use crate::components::board::{Board, Stone};
+use crate::components::board::Board;
+use crate::types::enums::{Stone, BoardSize};
 use crate::game::GameState;
 
 pub enum Msg {
@@ -17,7 +18,7 @@ impl Component for LocalGame {
 
     fn create(_ctx: &Context<Self>) -> Self {
         Self {
-            game_state: GameState::new(),
+            game_state: GameState::new(BoardSize::Small),
         }
     }
 
@@ -49,7 +50,8 @@ impl Component for LocalGame {
         html! {
             <div class="gomoku-game">
                 <div class="status">{status}</div>
-                <Board 
+                <Board
+                    board_size={self.game_state.board_size}
                     board={self.game_state.board.clone()}
                     disabled={self.game_state.winner.is_some()}
                     on_click={ctx.link().callback(|(row, col)| Msg::Place(row, col))}
